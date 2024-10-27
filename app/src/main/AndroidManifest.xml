@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+
+    <!-- Dovoljenje za dostop do interneta -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Dovoljenje za uporabo kamere -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Dovoljenje za branje medijskih slik (Android 13 in več) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- Dovoljenje za branje zunanjega pomnilnika (Android 12 in manj) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <!-- Dovoljenje za pisanje v zunanji pomnilnik (Android 9 in manj) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    <!-- Aplikacija zahteva funkcionalnost kamere kot obvezno -->
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/Analiza_rastlin"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true"> <!-- Dovoli nešifriran promet (HTTP) -->
+
+        <!-- Definicija začetne aktivnosti aplikacije -->
+        <activity
+            android:name=".ActivityStart"
+            android:exported="true"
+            android:label="@string/Analiza_rastlin">
+            <intent-filter>
+                <!-- Označi to aktivnost kot glavno za zagon aplikacije -->
+                <action android:name="android.intent.action.MAIN" />
+                <!-- Označi to aktivnost za prikaz na seznamu aplikacij -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Definicija drugih aktivnosti aplikacije -->
+        <activity android:name=".CameraActivity" android:exported="false" android:label="@string/Analiza_rastlin" />
+        <activity android:name=".ConfirmActivity" android:exported="false" android:label="@string/Analiza_rastlin" />
+        <activity android:name=".LoadingActivity" android:exported="false" android:label="@string/Analiza_rastlin" />
+        <activity android:name=".ActivityOutput" android:exported="false" android:label="@string/Analiza_rastlin" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,213 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/captured_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/sample_image"
+        android:alpha="0.7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.30" />
+
+    <LinearLayout
+        android:id="@+id/plant_info_section"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@color/light_green_2"
+        app:layout_constraintTop_toBottomOf="@id/captured_image"
+        app:layout_constraintBottom_toTopOf="@id/disease_check_section"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.30">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="20dp"> <!-- Dodano za premik objektov nižje -->
+
+            <TextView
+                android:id="@+id/plant_name_label"
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:text="Ime rastline: "
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/plant_name_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ime pridobljeno preko API"
+                android:background="@color/light_green_2"
+                android:textSize="16sp"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="20dp"
+        android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/plant_accuracy_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Natančnost [%]: "
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/plant_accuracy_box"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Ocena pridobljena preko API"
+            android:textSize="16sp"
+            android:inputType="none"
+            android:background="@color/light_green_2"
+            android:textColor="@android:color/black"
+            android:gravity="center" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="20dp"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/plant_stanje"
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:text="Stanje: "
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/plant_stanje_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Stanje pridobljeno preko API"
+                android:textSize="16sp"
+                android:inputType="none"
+                android:background="@color/light_green_2"
+                android:textColor="@android:color/black"
+                android:gravity="center" />
+        </LinearLayout>
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/disease_check_section"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:background="@color/light_gray_4"
+        app:layout_constraintTop_toBottomOf="@id/plant_info_section"
+        app:layout_constraintBottom_toTopOf="@id/retake_image_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.25">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/disease_check_label"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Analiziraj za bolezen?"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Switch
+                    android:id="@+id/disease_check_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/disease_result_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Izpis bolezni:"
+                android:padding="8dp"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                 />
+
+            <TextView
+                android:id="@+id/disease_result_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ime pridobljeno preko API"
+                android:textSize="16sp"
+                android:inputType="none"
+                android:background="@color/light_gray_4"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/retake_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:src="@drawable/reload_icon"
+        android:background="@drawable/rounded_rectangle_background"
+        android:contentDescription="Gumb za ponovno zajemanje slike"
+        android:scaleType="centerInside"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

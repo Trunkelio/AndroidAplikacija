@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Type.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #2aacb8;}
+.ln { color: #4b5059; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Type.kt</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">myapplication</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">theme</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.</span><span class="s1">Typography</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">TextStyle</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">font</span><span class="s2">.</span><span class="s1">FontFamily</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">font</span><span class="s2">.</span><span class="s1">FontWeight</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">unit</span><span class="s2">.</span><span class="s1">sp</span>
+<a name="l8"><span class="ln">8    </span></a>
+<a name="l9"><span class="ln">9    </span></a><span class="s3">// Set of Material typography styles to start with</span>
+<a name="l10"><span class="ln">10   </span></a><span class="s0">val </span><span class="s1">Typography </span><span class="s2">= </span><span class="s1">Typography</span><span class="s2">(</span>
+<a name="l11"><span class="ln">11   </span></a>    <span class="s1">bodyLarge </span><span class="s2">= </span><span class="s1">TextStyle</span><span class="s2">(</span>
+<a name="l12"><span class="ln">12   </span></a>        <span class="s1">fontFamily </span><span class="s2">= </span><span class="s1">FontFamily</span><span class="s2">.</span><span class="s1">Default</span><span class="s2">,</span>
+<a name="l13"><span class="ln">13   </span></a>        <span class="s1">fontWeight </span><span class="s2">= </span><span class="s1">FontWeight</span><span class="s2">.</span><span class="s1">Normal</span><span class="s2">,</span>
+<a name="l14"><span class="ln">14   </span></a>        <span class="s1">fontSize </span><span class="s2">= </span><span class="s4">16</span><span class="s2">.</span><span class="s1">sp</span><span class="s2">,</span>
+<a name="l15"><span class="ln">15   </span></a>        <span class="s1">lineHeight </span><span class="s2">= </span><span class="s4">24</span><span class="s2">.</span><span class="s1">sp</span><span class="s2">,</span>
+<a name="l16"><span class="ln">16   </span></a>        <span class="s1">letterSpacing </span><span class="s2">= </span><span class="s4">0.5</span><span class="s2">.</span><span class="s1">sp</span>
+<a name="l17"><span class="ln">17   </span></a>    <span class="s2">)</span>
+<a name="l18"><span class="ln">18   </span></a>    <span class="s3">/* Other default text styles to override 
+<a name="l19"><span class="ln">19   </span></a>    titleLarge = TextStyle( 
+<a name="l20"><span class="ln">20   </span></a>        fontFamily = FontFamily.Default, 
+<a name="l21"><span class="ln">21   </span></a>        fontWeight = FontWeight.Normal, 
+<a name="l22"><span class="ln">22   </span></a>        fontSize = 22.sp, 
+<a name="l23"><span class="ln">23   </span></a>        lineHeight = 28.sp, 
+<a name="l24"><span class="ln">24   </span></a>        letterSpacing = 0.sp 
+<a name="l25"><span class="ln">25   </span></a>    ), 
+<a name="l26"><span class="ln">26   </span></a>    labelSmall = TextStyle( 
+<a name="l27"><span class="ln">27   </span></a>        fontFamily = FontFamily.Default, 
+<a name="l28"><span class="ln">28   </span></a>        fontWeight = FontWeight.Medium, 
+<a name="l29"><span class="ln">29   </span></a>        fontSize = 11.sp, 
+<a name="l30"><span class="ln">30   </span></a>        lineHeight = 16.sp, 
+<a name="l31"><span class="ln">31   </span></a>        letterSpacing = 0.5.sp 
+<a name="l32"><span class="ln">32   </span></a>    ) 
+<a name="l33"><span class="ln">33   </span></a>    */</span>
+<a name="l34"><span class="ln">34   </span></a><span class="s2">)</span></pre>
+</body>
+</html>

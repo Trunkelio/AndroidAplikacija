@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>activity_loading.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #2aacb8;}
+.ln { color: #4b5059; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+activity_loading.kt</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">myapplication</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Handler</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Looper</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s1">import androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span>
+<a name="l8"><span class="ln">8    </span></a>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">class </span><span class="s1">LoadingActivity : AppCompatActivity</span><span class="s2">() {</span>
+<a name="l10"><span class="ln">10   </span></a>
+<a name="l11"><span class="ln">11   </span></a>    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+<a name="l12"><span class="ln">12   </span></a>        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+<a name="l13"><span class="ln">13   </span></a>        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_loading</span><span class="s2">)</span>
+<a name="l14"><span class="ln">14   </span></a>
+<a name="l15"><span class="ln">15   </span></a>        <span class="s3">// Simulacija nalaganja za 3 sekunde</span>
+<a name="l16"><span class="ln">16   </span></a>        <span class="s1">Handler</span><span class="s2">(</span><span class="s1">Looper</span><span class="s2">.</span><span class="s1">getMainLooper</span><span class="s2">()).</span><span class="s1">postDelayed</span><span class="s2">({</span>
+<a name="l17"><span class="ln">17   </span></a>            <span class="s3">// Prehod na ActivityOutput po nalaganju</span>
+<a name="l18"><span class="ln">18   </span></a>            <span class="s0">val </span><span class="s1">intent </span><span class="s2">= </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">ActivityOutput::</span><span class="s0">class</span><span class="s2">.</span><span class="s1">java</span><span class="s2">)</span>
+<a name="l19"><span class="ln">19   </span></a>            <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">)</span>
+<a name="l20"><span class="ln">20   </span></a>            <span class="s1">finish</span><span class="s2">() </span><span class="s3">// Končaj LoadingActivity, ko začneš ActivityOutput</span>
+<a name="l21"><span class="ln">21   </span></a>        <span class="s2">}, </span><span class="s4">3000</span><span class="s2">) </span><span class="s3">// 3000 ms (3 sekunde)</span>
+<a name="l22"><span class="ln">22   </span></a>    <span class="s2">}</span>
+<a name="l23"><span class="ln">23   </span></a><span class="s2">}</span>
+<a name="l24"><span class="ln">24   </span></a></pre>
+</body>
+</html>

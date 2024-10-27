@@ -1,0 +1,56 @@
+# Definicije različic knjižnic
+[versions]
+agp = "8.1.0"                  # Različica Android Gradle vtičnika
+kotlin = "1.9.10"              # Različica Kotlin prevajalnika
+coreKtx = "1.10.1"             # Različica knjižnice androidx.core:core-ktx
+junit = "4.13.2"               # Različica JUnit za enotsko testiranje
+junitExt = "1.1.5"             # Različica AndroidX razširitve za JUnit
+espressoCore = "3.5.1"         # Različica Espresso za UI testiranje
+lifecycleRuntimeKtx = "2.6.1"  # Različica knjižnice za življenjski cikel z Kotlin razširitvami
+activityCompose = "1.7.2"      # Različica knjižnice za integracijo Compose v aktivnostih
+composeBom = "2023.10.00"      # Različica BOM (Bill of Materials) za Jetpack Compose
+constraintLayout = "2.1.4"     # Različica ConstraintLayout za postavitve
+material = "1.9.0"             # Različica Material Design knjižnice
+camerax = "1.2.3"              # Različica CameraX knjižnice
+camerax_view = "1.2.3"         # Različica CameraX View knjižnice
+retrofit = "2.9.0"             # Različica Retrofit za omrežno komunikacijo
+okhttp = "4.9.0"               # Različica OkHttp za omrežne zahteve
+
+# Definicije knjižnic
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }  # Jedro AndroidX z Kotlin razširitvami
+junit = { group = "junit", name = "junit", version.ref = "junit" }                           # JUnit za enotsko testiranje
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }    # AndroidX razširitve za JUnit
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }  # Espresso za UI testiranje
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }  # Življenjski cikel z Kotlin razširitvami
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }  # Integracija Compose v aktivnostih
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }  # BOM za upravljanje različic Compose
+
+# Knjižnice Compose brez referenc različic
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }                                     # Osnovne UI komponente za Compose
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }                   # Grafične komponente za Compose
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }                     # Orodja za razvijalce za Compose
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }     # Predogled UI v Compose
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }         # Manifest za testiranje Compose UI
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }             # Podpora za JUnit4 v Compose testih
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }                # Material Design 3 komponente za Compose
+
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }  # ConstraintLayout za postavitve
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }  # Material Design knjižnice
+
+# Knjižnice CameraX
+androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "camerax" }        # Jedro CameraX
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }  # CameraX z uporabo Camera2 API
+androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }  # Integracija CameraX z življenjskim ciklom
+androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax_view" }       # Pogledi za prikaz kamere
+androidx-camera-extensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "camerax_view" }  # Razširitve CameraX (npr. HDR, nočni način)
+
+# Knjižnice za omrežno komunikacijo (Retrofit in OkHttp)
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }    # Gson pretvornik za Retrofit
+okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }  # Interceptor za logiranje omrežnih zahtev
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }               # Retrofit knjižnica za HTTP zahteve
+
+# Definicije vtičnikov
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }              # Android aplikacijski vtičnik
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }  # Kotlin Android vtičnik
