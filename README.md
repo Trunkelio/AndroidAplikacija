@@ -1,3 +1,5 @@
+Description lang.: Slovenian --> translate if needed
+
 Funkcionalnosti
 Prepoznavanje rastlin v realnem času: Prepoznavanje rastlinskih vrst z uporabo modela strojnega učenja.
 Analiza zdravja in diagnosticiranje bolezni: Diagnostika zdravja rastline in odkrivanje bolezni na podlagi posnetka.
