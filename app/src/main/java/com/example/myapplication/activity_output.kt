@@ -172,7 +172,6 @@ class ActivityOutput : AppCompatActivity() {
 
         // Pomakni se nazaj na CameraActivity za ponovno zajemanje slike
         val intent = Intent(this, CameraActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
 
         // Zaključi trenutno aktivnost, da jo odstraniš iz sklada
