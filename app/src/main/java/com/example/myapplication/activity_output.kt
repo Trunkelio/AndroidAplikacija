@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.text.DecimalFormat  // Za formatiranje odstotkov
 import android.util.Log
+import okhttp3.RequestBody.Companion.asRequestBody
 
 class ActivityOutput : AppCompatActivity() {
 
@@ -114,53 +115,59 @@ class ActivityOutput : AppCompatActivity() {
         if (imageFilePath != null) {
             val imageFile = File(imageFilePath!!)
             if (imageFile.exists()) {
-                val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), imageFile)
+                val requestFile = imageFile.asRequestBody("multipart/form-data".toMediaTypeOrNull())
                 val body = MultipartBody.Part.createFormData("file", imageFile.name, requestFile)
+
                 // Pošlji sliko na API za klasifikacijo bolezni
                 apiService.uploadSicknessImage(body).enqueue(object : Callback<SicknessResponse> {
                     override fun onResponse(call: Call<SicknessResponse>, response: Response<SicknessResponse>) {
                         if (response.isSuccessful) {
                             response.body()?.let {
-                                // Posodobi ime vrste in stopnjo zaupanja, če je potrebno
                                 val newSpeciesName = it.species_name
                                 val newSpeciesConfidence = it.species_confidence?.toFloat() ?: 0f
-                                // Posodobi ime vrste in stopnjo zaupanja, če sta različna
                                 if (newSpeciesName != null && newSpeciesName != speciesName) {
                                     speciesName = newSpeciesName
                                     speciesConfidence = newSpeciesConfidence
-                                    // Prikaži posodobljeno ime vrste in stopnjo zaupanja
+
                                     plantNameBox.text = speciesName ?: "Ni podatkov o vrsti"
                                     val decimalFormat = DecimalFormat("#.##")
                                     val formattedConfidence = decimalFormat.format(speciesConfidence)
                                     plantAccuracyBox.text = "$formattedConfidence%"
                                 }
-                                // Prikaži bolezen
+
                                 var sicknessName = it.disease
                                 val sicknessConfidence = it.disease_confidence?.toFloat() ?: 0f
                                 val formattedSicknessConfidence = DecimalFormat("#.##").format(sicknessConfidence)
-                                sicknessName = sicknessName.replace("_", " ")  // Zamenjaj podčrtaje z presledki
+                                sicknessName = sicknessName.replace("_", " ")
 
                                 diseaseResultBox.text = "$sicknessName [$formattedSicknessConfidence%]"
                             }
                         } else {
-                            // Če odgovor ni uspešen, prikaži sporočilo o napaki
-                            Toast.makeText(this@ActivityOutput, "Neuspešno pridobivanje veljavnega odgovora", Toast.LENGTH_SHORT).show()
+                            // Napaka 500 - težava na strežniku
+                            Toast.makeText(this@ActivityOutput, "Strežniška napaka: ${response.code()}", Toast.LENGTH_SHORT).show()
+                            Log.e("API Error", "Strežniška napaka 500: Koda: ${response.code()}, Sporočilo: ${response.message()}")
+
+                            // Preverite telo napake, če obstaja
+                            val errorBody = response.errorBody()?.string()
+                            Log.e("API Error Body", "Napaka na strani strežnika: $errorBody")
                         }
                     }
+
                     override fun onFailure(call: Call<SicknessResponse>, t: Throwable) {
-                        // Če pride do napake v omrežju, prikaži sporočilo o napaki
                         Toast.makeText(this@ActivityOutput, "Napaka v omrežju: ${t.message}", Toast.LENGTH_SHORT).show()
+                        Log.e("Network Error", "Napaka: ${t.message}", t)
                     }
                 })
             } else {
-                // Če slikovna datoteka ne obstaja, prikaži sporočilo o napaki
                 Toast.makeText(this, "Slikovna datoteka ni najdena", Toast.LENGTH_SHORT).show()
+                Log.e("File Error", "Slikovna datoteka ni najdena na poti: $imageFilePath")
             }
         } else {
-            // Če pot do slikovne datoteke ni na voljo, prikaži sporočilo o napaki
             Toast.makeText(this, "Pot do slikovne datoteke ni na voljo", Toast.LENGTH_SHORT).show()
+            Log.e("File Path Error", "Pot do slikovne datoteke je null")
         }
     }
+
 
     // Funkcija za ponovno zajemanje slike
     private fun retakeImage() {
