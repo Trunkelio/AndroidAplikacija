@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageButton
@@ -23,6 +25,7 @@ import java.io.File
 import java.text.DecimalFormat  // Za formatiranje odstotkov
 import android.util.Log
 import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.FileOutputStream
 
 class ActivityOutput : AppCompatActivity() {
 
@@ -108,14 +111,42 @@ class ActivityOutput : AppCompatActivity() {
         retakeImageButton.setOnClickListener {
             retakeImage()
         }
+
+
     }
 
+    // Spremeni velikost slike na 256x256 preden jo naložiš
+    private fun resizeImage(imageFile: File): File {
+        // Dekodiraj slikovno datoteko v bitmap
+        val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+
+        // Preveri, ali je slika že velikosti 256x256
+        if (bitmap.width == 256 && bitmap.height == 256) {
+            // Če je slika že 256x256, vrni originalno datoteko
+            return imageFile
+        }
+
+        // Če slika ni 256x256, spremeni njeno velikost
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 256, 256, true)
+        val resizedFile = File(cacheDir, "resized_image.jpg")
+        val outputStream = FileOutputStream(resizedFile)
+
+        // Stisni spremenjeno sliko in jo shrani v novo datoteko
+        resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+
+        // Vrni datoteko spremenjene slike
+        return resizedFile
+    }
     // Metoda za izvedbo API klica za klasifikacijo bolezni
     private fun performSicknessClassification() {
         if (imageFilePath != null) {
             val imageFile = File(imageFilePath!!)
+            // Spremeni velikost slike pred nalaganjem
+            val resizedImageFile = resizeImage(imageFile)
             if (imageFile.exists()) {
-                val requestFile = imageFile.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                val requestFile = resizedImageFile.asRequestBody("multipart/form-data".toMediaTypeOrNull())
                 val body = MultipartBody.Part.createFormData("file", imageFile.name, requestFile)
 
                 // Pošlji sliko na API za klasifikacijo bolezni
